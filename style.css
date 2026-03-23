@@ -1,8 +1,102 @@
 /*JezCruz Stylesheet*/
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #f0f0f0;
-}
+:root {
+      font-size: 1.18rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .skill {
+      text-align: center;
+      padding: 16px 10px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .project-badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #bbf7d0;
+      background: rgba(52,211,153,0.1);
+      border: 1px solid rgba(52,211,153,0.18);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .project-links a {
+      color: #bfdbfe;
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    .project-links a:hover { text-decoration: underline; }
+
+    .contact-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .grid-2, .projects { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner { gap: 12px; align-items: flex-start; flex-direction: column; }
+      .quick-stats { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 2.4rem; }
+      .hero { padding-top: 60px; }
+    }
