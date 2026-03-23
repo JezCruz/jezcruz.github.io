@@ -375,6 +375,44 @@
       h1 { font-size: 2.5rem; }
       .hero { padding-top: 58px; }
     }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toggle {
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* HOVER IMAGE */
+    .profile:hover img {
+      transform: scale(1.05);
+    }
+
+    /* HERO */
+    .profile {
+      width: 230px;
+      height: 260px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .profile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .profile:hover img {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -386,13 +424,18 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
+        <button class="toggle" onclick="toggleMode()">🌙</button>
       </div>
     </div>
   </nav>
-
+  <div class="hero">
   <header class="hero" id="home">
     <div class="container hero-grid">
       <div>
+          <div class="profile">
+            <img id="profileImg" src="profiles/profile.jpg">
+          </div>
+          <br>
         <div class="badge">🚀 Developer in Progress</div>
         <h1>Hi, I'm <span class="accent">Jez Cruz</span>.<br>I build, learn, and improve every day.</h1>
         <p class="hero-copy">
@@ -549,5 +592,40 @@
       <p>© 2026 Jez Cruz. Built with GitHub Pages.</p>
     </div>
   </footer>
+  <script>
+  let dark = false;
+
+  function toggleMode() {
+    document.body.classList.toggle("dark");
+    dark = !dark;
+    updateImage(false);
+  }
+
+  // UPDATE IMAGE (NORMAL)
+  function updateImage(isHover) {
+    const img = document.getElementById("profileImg");
+
+    if (dark) {
+      img.src = isHover 
+        ? "profiles/profile_night_shy.png" 
+        : "profiles/profile_night.png";
+    } else {
+      img.src = isHover 
+        ? "profiles/profile_day_shy.png" 
+        : "profiles/profile.jpg";
+    }
+  }
+
+  // HOVER EVENTS (DYNAMIC 🔥)
+  const img = document.getElementById("profileImg");
+
+  img.addEventListener("mouseenter", () => {
+    updateImage(true);
+  });
+
+  img.addEventListener("mouseleave", () => {
+    updateImage(false);
+  });
+  </script>
 </body>
 </html>
