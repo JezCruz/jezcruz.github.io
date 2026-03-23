@@ -388,6 +388,8 @@
       border-radius: 20px;
       border: none;
       cursor: pointer;
+      background-color: #0b1220;
+      color: white;
     }
 
     /* HOVER IMAGE */
@@ -424,7 +426,7 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-        <button class="toggle" onclick="toggleMode()">🌙</button>
+        <button id="themeBtn" class="toggle" onclick="toggleMode()">Day ☀️</button>
       </div>
     </div>
   </nav>
@@ -598,6 +600,16 @@
   function toggleMode() {
     document.body.classList.toggle("dark");
     dark = !dark;
+
+    const btn = document.getElementById("themeBtn");
+
+    // CHANGE ICON 🔥
+    if (dark) {
+      btn.textContent = "Night 🌙";
+    } else {
+      btn.textContent = "Day ☀️";
+    }
+
     updateImage(false);
   }
 
