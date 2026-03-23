@@ -1,5 +1,8 @@
 /*JezCruz Stylesheet*/
 
-body {
-  background-color: blue;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f0f0f0;
 }
