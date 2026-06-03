@@ -14,15 +14,12 @@
   <style>
     :root {
       --bg: #07090d;
-      --bg-soft: #0d1117;
       --card: rgba(17, 24, 39, 0.78);
       --card-2: rgba(12, 18, 28, 0.92);
       --text: #f8fafc;
       --muted: #94a3b8;
       --line: rgba(148, 163, 184, 0.16);
       --accent: #d4af37;
-      --accent-2: #60a5fa;
-      --good: #34d399;
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
       --radius: 24px;
       --max: 1160px;
@@ -36,6 +33,15 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    #about,
+    #skills,
+    #projects,
+    #services,
+    #contact {
+      scroll-margin-top: 100px;
     }
 
     body {
@@ -46,6 +52,10 @@
         radial-gradient(circle at 85% 12%, rgba(96, 165, 250, 0.10), transparent 26%),
         linear-gradient(180deg, #07090d 0%, #0b1120 50%, #05070a 100%);
       line-height: 1.65;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     a {
@@ -148,8 +158,6 @@
 
     .badge {
       display: inline-flex;
-      align-items: center;
-      gap: 10px;
       padding: 9px 14px;
       border-radius: 999px;
       background: rgba(212, 175, 55, 0.10);
@@ -224,25 +232,11 @@
       overflow: hidden;
     }
 
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      width: 190px;
-      height: 190px;
-      right: -70px;
-      bottom: -70px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent 65%);
-      pointer-events: none;
-    }
-
     .profile {
-      width: 112px;
-      height: 112px;
-      border-radius: 28px;
+      width: 180px;
+      height: 260px;
+      border-radius: 5px;
       overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.28);
-      background: #111827;
       margin-bottom: 18px;
     }
 
@@ -250,11 +244,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: 0.35s ease;
-    }
-
-    .profile:hover img {
+      object-position: center top;
       transform: scale(1.05);
+      display: block;
     }
 
     .hero-card h2 {
@@ -263,8 +255,12 @@
       letter-spacing: -0.03em;
     }
 
-    .hero-card p {
+    .hero-card p,
+    .card p {
       color: var(--muted);
+    }
+
+    .hero-card p {
       margin-bottom: 18px;
     }
 
@@ -292,6 +288,7 @@
 
     section {
       padding: 34px 0;
+      scroll-margin-top: 110px;
     }
 
     .section-head {
@@ -323,10 +320,6 @@
       font-size: 1.16rem;
       margin-bottom: 10px;
       letter-spacing: -0.025em;
-    }
-
-    .card p {
-      color: var(--muted);
     }
 
     .skills-grid {
@@ -374,6 +367,14 @@
       border-radius: 18px;
       border: 1px solid var(--line);
       background: #0b1120;
+      cursor: zoom-in;
+      transition: 0.2s ease;
+    }
+
+    .project-gallery img:hover {
+      transform: translateY(-3px);
+      border-color: rgba(212, 175, 55, 0.42);
+      filter: brightness(1.08);
     }
 
     .project-gallery img:first-child {
@@ -434,15 +435,6 @@
       margin-top: auto;
     }
 
-    .note {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.18);
-      color: #fde68a;
-      font-size: 0.92rem;
-    }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -484,6 +476,82 @@
       padding: 28px 0 58px;
       color: var(--muted);
       text-align: center;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(10px);
+    }
+
+    .image-modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(1100px, 96vw);
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: popIn 0.18s ease;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #020617;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .modal-close:hover {
+      transform: scale(1.05);
+      background: rgba(212, 175, 55, 0.95);
+      color: #111827;
+    }
+
+    .modal-caption {
+      color: #cbd5e1;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
     }
 
     @media (max-width: 980px) {
@@ -536,6 +604,15 @@
       .project-top {
         flex-direction: column;
       }
+
+      .modal-close {
+        top: 8px;
+        right: 8px;
+      }
+
+      .image-modal {
+        padding: 14px;
+      }
     }
   </style>
 </head>
@@ -583,17 +660,14 @@
             <strong>3+</strong>
             <span>Real app projects</span>
           </div>
-
           <div class="stat">
             <strong>Full-stack</strong>
             <span>Frontend + backend</span>
           </div>
-
           <div class="stat">
             <strong>Mobile</strong>
             <span>React Native apps</span>
           </div>
-
           <div class="stat">
             <strong>Cloud</strong>
             <span>Linux deployment</span>
@@ -692,8 +766,7 @@
         <div class="section-head">
           <h2>Featured Projects</h2>
           <p>
-            These are real projects I built and improved while learning full-stack and mobile development.
-            Replace the sample image filenames with your actual screenshots.
+            Selected projects showcasing my experience in web, mobile, backend, and app development.
           </p>
         </div>
 
@@ -735,7 +808,7 @@
 
               <div class="project-links">
                 <a class="btn btn-secondary" href="https://github.com/JezCruz" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="btn btn-primary" href="#contact">Discuss Project</a>
+                <a class="btn btn-primary" href="#contact">Contact Me</a>
               </div>
             </div>
           </article>
@@ -777,7 +850,7 @@
 
               <div class="project-links">
                 <a class="btn btn-secondary" href="https://github.com/JezCruz" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="btn btn-primary" href="#contact">Discuss Project</a>
+                <a class="btn btn-primary" href="#contact">Contact Me</a>
               </div>
             </div>
           </article>
@@ -819,15 +892,11 @@
 
               <div class="project-links">
                 <a class="btn btn-secondary" href="https://github.com/JezCruz" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="btn btn-primary" href="#contact">Discuss Project</a>
+                <a class="btn btn-primary" href="#contact">Contact Me</a>
               </div>
             </div>
           </article>
         </div>
-
-        <p class="note" style="margin-top: 18px;">
-          Additional screenshots and project details are available upon request.
-        </p>
       </div>
     </section>
 
@@ -886,10 +955,58 @@
     </section>
   </main>
 
+  <div class="image-modal" id="imageModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close image preview">&times;</button>
+      <img class="modal-img" id="modalImg" src="" alt="">
+      <p class="modal-caption" id="modalCaption"></p>
+    </div>
+  </div>
+
   <footer>
     <div class="container">
       <p>© 2026 Jez Cruz. Built with HTML, CSS, and real project experience.</p>
     </div>
   </footer>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalCaption = document.getElementById("modalCaption");
+    const modalClose = document.getElementById("modalClose");
+    const galleryImages = document.querySelectorAll(".project-gallery img");
+
+    galleryImages.forEach((image) => {
+      image.addEventListener("click", () => {
+        modal.classList.add("show");
+        document.body.classList.add("modal-open");
+
+        modalImg.src = image.src;
+        modalImg.alt = image.alt;
+        modalCaption.textContent = image.alt;
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove("show");
+      document.body.classList.remove("modal-open");
+      modalImg.src = "";
+      modalCaption.textContent = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("show")) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
