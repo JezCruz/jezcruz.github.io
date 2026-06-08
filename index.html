@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Jez Cruz | Full-Stack Developer</title>
-  <meta name="description" content="Portfolio of Jez Cruz, a full-stack developer building web apps, mobile apps, REST APIs, and cloud-deployed systems." />
+  <title>Jez Cruz | Junior Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Jez Cruz, a junior full-stack developer building web apps, mobile apps, REST APIs, authentication systems, and deployed projects." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,14 +13,18 @@
 
   <style>
     :root {
-      --bg: #07090d;
-      --card: rgba(17, 24, 39, 0.78);
-      --card-2: rgba(12, 18, 28, 0.92);
+      --bg: #060913;
+      --bg-2: #0b1020;
+      --card: rgba(15, 23, 42, 0.82);
+      --card-2: rgba(8, 13, 26, 0.94);
       --text: #f8fafc;
       --muted: #94a3b8;
+      --soft: #cbd5e1;
       --line: rgba(148, 163, 184, 0.16);
-      --accent: #d4af37;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      --accent: #3b82f6;
+      --accent-2: #60a5fa;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
       --radius: 24px;
       --max: 1160px;
     }
@@ -33,25 +37,25 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 92px;
     }
 
-    #about,
-    #skills,
     #projects,
-    #services,
+    #skills,
+    #about,
     #contact {
-      scroll-margin-top: 100px;
+      scroll-margin-top: 105px;
     }
 
     body {
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 5%, rgba(212, 175, 55, 0.13), transparent 28%),
-        radial-gradient(circle at 85% 12%, rgba(96, 165, 250, 0.10), transparent 26%),
-        linear-gradient(180deg, #07090d 0%, #0b1120 50%, #05070a 100%);
+        radial-gradient(circle at 15% 5%, rgba(59, 130, 246, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(14, 165, 233, 0.12), transparent 25%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 48%, #05070d 100%);
       line-height: 1.65;
+      min-height: 100vh;
     }
 
     body.modal-open {
@@ -78,7 +82,7 @@
       top: 0;
       z-index: 99;
       backdrop-filter: blur(16px);
-      background: rgba(7, 9, 13, 0.78);
+      background: rgba(6, 9, 19, 0.82);
       border-bottom: 1px solid var(--line);
     }
 
@@ -97,20 +101,20 @@
     }
 
     .brand span {
-      color: var(--accent);
+      color: var(--accent-2);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 22px;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       color: var(--muted);
       font-size: 0.94rem;
-      font-weight: 600;
+      font-weight: 700;
       transition: 0.2s ease;
     }
 
@@ -124,9 +128,10 @@
       justify-content: center;
       padding: 12px 18px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid var(--line);
       transition: 0.2s ease;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -134,10 +139,10 @@
     }
 
     .btn-primary {
-      color: #111827;
-      background: linear-gradient(135deg, #f6d365, #d4af37);
-      box-shadow: 0 18px 50px rgba(212, 175, 55, 0.16);
-      border-color: rgba(212, 175, 55, 0.55);
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), #2563eb);
+      box-shadow: 0 18px 50px rgba(59, 130, 246, 0.18);
+      border-color: rgba(96, 165, 250, 0.45);
     }
 
     .btn-secondary {
@@ -146,12 +151,12 @@
     }
 
     .hero {
-      padding: 86px 0 44px;
+      padding: 86px 0 40px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.16fr 0.84fr;
       gap: 28px;
       align-items: stretch;
     }
@@ -160,30 +165,30 @@
       display: inline-flex;
       padding: 9px 14px;
       border-radius: 999px;
-      background: rgba(212, 175, 55, 0.10);
-      border: 1px solid rgba(212, 175, 55, 0.22);
-      color: #fde68a;
+      background: var(--accent-soft);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      color: #bfdbfe;
       font-size: 0.92rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 18px;
     }
 
     h1 {
-      max-width: 850px;
-      font-size: clamp(2.6rem, 6vw, 5.3rem);
-      line-height: 0.98;
+      max-width: 900px;
+      font-size: clamp(2.55rem, 6vw, 5.25rem);
+      line-height: 0.99;
       letter-spacing: -0.065em;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .accent {
-      color: var(--accent);
+      color: var(--accent-2);
     }
 
     .hero-copy {
       color: var(--muted);
       font-size: 1.08rem;
-      max-width: 66ch;
+      max-width: 64ch;
       margin-bottom: 26px;
     }
 
@@ -209,8 +214,9 @@
 
     .stat strong {
       display: block;
-      font-size: 1.3rem;
+      font-size: 1.24rem;
       margin-bottom: 4px;
+      letter-spacing: -0.03em;
     }
 
     .stat span {
@@ -219,7 +225,8 @@
     }
 
     .hero-card,
-    .card {
+    .card,
+    .project-card {
       background: linear-gradient(180deg, var(--card), var(--card-2));
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -232,12 +239,28 @@
       overflow: hidden;
     }
 
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -80px auto auto;
+      width: 190px;
+      height: 190px;
+      background: rgba(59, 130, 246, 0.16);
+      filter: blur(12px);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
     .profile {
       width: 180px;
       height: 260px;
-      border-radius: 5px;
+      border-radius: 12px;
       overflow: hidden;
       margin-bottom: 18px;
+      border: 1px solid var(--line);
+      background: #0f172a;
+      position: relative;
+      z-index: 1;
     }
 
     .profile img {
@@ -252,7 +275,9 @@
     .hero-card h2 {
       font-size: 1.45rem;
       margin-bottom: 10px;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-card p,
@@ -262,12 +287,16 @@
 
     .hero-card p {
       margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .tag {
@@ -277,17 +306,17 @@
       color: #dbeafe;
       background: rgba(255, 255, 255, 0.035);
       border: 1px solid var(--line);
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .tag.gold {
-      color: #fde68a;
-      border-color: rgba(212, 175, 55, 0.22);
-      background: rgba(212, 175, 55, 0.08);
+    .tag.blue {
+      color: #bfdbfe;
+      border-color: rgba(96, 165, 250, 0.24);
+      background: rgba(59, 130, 246, 0.10);
     }
 
     section {
-      padding: 34px 0;
+      padding: 36px 0;
       scroll-margin-top: 110px;
     }
 
@@ -296,46 +325,14 @@
     }
 
     .section-head h2 {
-      font-size: clamp(1.8rem, 3vw, 2.45rem);
+      font-size: clamp(1.75rem, 3vw, 2.45rem);
       letter-spacing: -0.045em;
       margin-bottom: 8px;
     }
 
     .section-head p {
       color: var(--muted);
-      max-width: 75ch;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 22px;
-    }
-
-    .card h3 {
-      font-size: 1.16rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.025em;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
-    }
-
-    .skill {
-      padding: 17px 12px;
-      text-align: center;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--line);
-      font-weight: 800;
-      color: #e2e8f0;
+      max-width: 76ch;
     }
 
     .projects-list {
@@ -349,10 +346,6 @@
       gap: 22px;
       align-items: stretch;
       padding: 22px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--card), var(--card-2));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
     }
 
     .project-gallery {
@@ -373,7 +366,7 @@
 
     .project-gallery img:hover {
       transform: translateY(-3px);
-      border-color: rgba(212, 175, 55, 0.42);
+      border-color: rgba(96, 165, 250, 0.42);
       filter: brightness(1.08);
     }
 
@@ -402,28 +395,32 @@
       margin-bottom: 8px;
     }
 
+    .project-top p {
+      color: var(--muted);
+    }
+
     .pill {
       padding: 7px 11px;
       border-radius: 999px;
       font-size: 0.78rem;
-      color: #bbf7d0;
-      background: rgba(52, 211, 153, 0.08);
-      border: 1px solid rgba(52, 211, 153, 0.18);
+      color: #bfdbfe;
+      background: rgba(59, 130, 246, 0.10);
+      border: 1px solid rgba(96, 165, 250, 0.20);
       white-space: nowrap;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .features {
       display: grid;
       gap: 8px;
-      color: #cbd5e1;
+      color: var(--soft);
       font-size: 0.95rem;
       list-style: none;
     }
 
     .features li::before {
       content: "✓";
-      color: var(--accent);
+      color: var(--accent-2);
       margin-right: 8px;
       font-weight: 900;
     }
@@ -435,27 +432,36 @@
       margin-top: auto;
     }
 
-    .services-grid {
+    .skills-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 14px;
     }
 
-    .service-card {
-      padding: 20px;
-      border-radius: 20px;
+    .skill {
+      padding: 17px 12px;
+      text-align: center;
+      border-radius: 18px;
       background: rgba(255, 255, 255, 0.035);
       border: 1px solid var(--line);
+      font-weight: 850;
+      color: #e2e8f0;
     }
 
-    .service-card h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
 
-    .service-card p {
-      color: var(--muted);
-      font-size: 0.92rem;
+    .card {
+      padding: 22px;
+    }
+
+    .card h3 {
+      font-size: 1.16rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.025em;
     }
 
     .contact {
@@ -543,8 +549,8 @@
 
     .modal-close:hover {
       transform: scale(1.05);
-      background: rgba(212, 175, 55, 0.95);
-      color: #111827;
+      background: var(--accent);
+      color: #ffffff;
     }
 
     .modal-caption {
@@ -568,10 +574,6 @@
       .skills-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
 
     @media (max-width: 640px) {
@@ -589,9 +591,12 @@
         padding-top: 54px;
       }
 
+      h1 {
+        font-size: clamp(2.4rem, 13vw, 3.3rem);
+      }
+
       .stats,
-      .skills-grid,
-      .services-grid {
+      .skills-grid {
         grid-template-columns: 1fr;
       }
 
@@ -623,10 +628,9 @@
       <a class="brand" href="#home">Jez<span>Cruz</span></a>
 
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#services">Services</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -635,7 +639,7 @@
   <header class="hero" id="home">
     <div class="container hero-grid">
       <div>
-        <div class="badge">Available for web, mobile, and WordPress support</div>
+        <div class="badge">Junior Full-Stack Developer</div>
 
         <h1>
           Hi, I'm <span class="accent">Jez Cruz</span>.<br>
@@ -643,10 +647,8 @@
         </h1>
 
         <p class="hero-copy">
-          I’m a full-stack developer focused on practical projects using Next.js,
-          React Native, Django, PostgreSQL, REST APIs, and cloud deployment. I enjoy
-          building clean interfaces, connecting real backends, and improving systems
-          step by step.
+          I build practical apps using Next.js, React Native, Django, PostgreSQL,
+          REST APIs, authentication, databases, and deployment.
         </p>
 
         <div class="hero-actions">
@@ -680,17 +682,16 @@
           <img src="profiles/profile.jpg" alt="Jez Cruz profile photo">
         </div>
 
-        <h2>Developer with real project experience.</h2>
+        <h2>Developer focused on real working projects.</h2>
 
         <p>
-          I build practical applications such as booking platforms, productivity apps,
-          Bible/devotional apps, APIs, dashboards, authentication systems, and deployed
-          web projects.
+          I create apps with user authentication, API connections, databases,
+          mobile interfaces, dashboards, and deployment workflows.
         </p>
 
         <div class="tags">
-          <span class="tag gold">Next.js</span>
-          <span class="tag gold">Django</span>
+          <span class="tag blue">Next.js</span>
+          <span class="tag blue">Django</span>
           <span class="tag">React Native</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">REST API</span>
@@ -701,72 +702,13 @@
   </header>
 
   <main>
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>About Me</h2>
-          <p>
-            I’m a BSIT student and aspiring professional developer. I focus on building
-            real projects instead of only watching tutorials. My experience includes
-            web applications, mobile apps, API development, authentication, database
-            integration, and deployment.
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <h3>What I Can Build</h3>
-            <p>
-              I can help with landing pages, dashboards, mobile app screens, REST API
-              integration, authentication flows, database-backed systems, basic website
-              updates, and bug fixing.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>How I Work</h3>
-            <p>
-              I’m detail-oriented, willing to learn tools quickly, and comfortable
-              following instructions, documenting processes, checking layouts, testing
-              forms, and improving user experience.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="container">
-        <div class="section-head">
-          <h2>Skills & Tools</h2>
-          <p>
-            Technologies and tools I use for building web, mobile, backend, and deployed projects.
-          </p>
-        </div>
-
-        <div class="skills-grid">
-          <div class="skill">Next.js</div>
-          <div class="skill">React</div>
-          <div class="skill">React Native</div>
-          <div class="skill">Expo</div>
-          <div class="skill">Django</div>
-          <div class="skill">Python</div>
-          <div class="skill">PostgreSQL</div>
-          <div class="skill">SQLite</div>
-          <div class="skill">REST API</div>
-          <div class="skill">Git</div>
-          <div class="skill">GitHub</div>
-          <div class="skill">Linux</div>
-        </div>
-      </div>
-    </section>
-
     <section id="projects">
       <div class="container">
         <div class="section-head">
           <h2>Featured Projects</h2>
           <p>
-            Selected projects showcasing my experience in web, mobile, backend, and app development.
+            Real projects showing my experience with frontend, backend, mobile development,
+            authentication, databases, APIs, and deployment.
           </p>
         </div>
 
@@ -783,16 +725,16 @@
                 <div>
                   <h3>Skillvine</h3>
                   <p>
-                    An online learning and booking platform where users can browse lessons,
-                    book sessions, and manage teacher/student workflows.
+                    Online learning and booking platform for students and teachers,
+                    built with a full-stack web app structure.
                   </p>
                 </div>
                 <span class="pill">Web Platform</span>
               </div>
 
               <div class="tags">
-                <span class="tag gold">Next.js</span>
-                <span class="tag gold">Django</span>
+                <span class="tag blue">Next.js</span>
+                <span class="tag blue">Django</span>
                 <span class="tag">PostgreSQL</span>
                 <span class="tag">JWT Auth</span>
                 <span class="tag">REST API</span>
@@ -800,10 +742,8 @@
 
               <ul class="features">
                 <li>User authentication and profile handling</li>
-                <li>Lesson listing and booking system</li>
+                <li>Lesson browsing and booking flow</li>
                 <li>Teacher and student dashboard features</li>
-                <li>Django REST API connected to frontend</li>
-                <li>Cloud deployment and server setup experience</li>
               </ul>
 
               <div class="project-links">
@@ -825,16 +765,16 @@
                 <div>
                   <h3>Rabbit Tasker</h3>
                   <p>
-                    A productivity mobile app for task planning, quick todo creation,
-                    offline storage, and AI-assisted task organization.
+                    Offline-first productivity mobile app for task planning,
+                    scheduling, and AI-assisted task organization.
                   </p>
                 </div>
                 <span class="pill">Mobile App</span>
               </div>
 
               <div class="tags">
-                <span class="tag gold">React Native</span>
-                <span class="tag gold">Expo</span>
+                <span class="tag blue">React Native</span>
+                <span class="tag blue">Expo</span>
                 <span class="tag">Django API</span>
                 <span class="tag">SQLite</span>
                 <span class="tag">Mobile UI</span>
@@ -844,8 +784,6 @@
                 <li>Task creation, scheduling, and completion flow</li>
                 <li>Local SQLite database for offline-first storage</li>
                 <li>Django API connection for backend features</li>
-                <li>Custom mobile interface with app navigation</li>
-                <li>Android APK build and device testing experience</li>
               </ul>
 
               <div class="project-links">
@@ -867,16 +805,16 @@
                 <div>
                   <h3>ChristCore Daily</h3>
                   <p>
-                    A Bible and devotional mobile app focused on daily reading,
-                    Scripture navigation, notes, and Christian growth features.
+                    Bible and devotional mobile app for daily reading, Scripture
+                    navigation, notes, bookmarks, and spiritual growth.
                   </p>
                 </div>
                 <span class="pill">Devotional App</span>
               </div>
 
               <div class="tags">
-                <span class="tag gold">React Native</span>
-                <span class="tag gold">Expo</span>
+                <span class="tag blue">React Native</span>
+                <span class="tag blue">Expo</span>
                 <span class="tag">SQLite</span>
                 <span class="tag">Bible Reader</span>
                 <span class="tag">Daily Devotion</span>
@@ -884,10 +822,8 @@
 
               <ul class="features">
                 <li>Bible reader interface and devotional content structure</li>
-                <li>Mobile navigation and reading experience improvements</li>
-                <li>Notes and user interaction features</li>
+                <li>Notes, bookmarks, and reading experience features</li>
                 <li>Offline-friendly mobile app planning</li>
-                <li>Android app testing and UI refinement</li>
               </ul>
 
               <div class="project-links">
@@ -900,34 +836,58 @@
       </div>
     </section>
 
-    <section id="services">
+    <section id="skills">
       <div class="container">
         <div class="section-head">
-          <h2>Ways I Can Help</h2>
+          <h2>Skills & Tools</h2>
           <p>
-            Practical services I can support for small businesses, teams, websites, and app projects.
+            Technologies I use for web, mobile, backend, database, and deployment projects.
           </p>
         </div>
 
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>Website Updates</h3>
-            <p>Content changes, layout cleanup, image uploads, buttons, links, and simple page improvements.</p>
+        <div class="skills-grid">
+          <div class="skill">Next.js</div>
+          <div class="skill">React</div>
+          <div class="skill">React Native</div>
+          <div class="skill">Expo</div>
+          <div class="skill">Django</div>
+          <div class="skill">Python</div>
+          <div class="skill">PostgreSQL</div>
+          <div class="skill">SQLite</div>
+          <div class="skill">REST API</div>
+          <div class="skill">Git</div>
+          <div class="skill">GitHub</div>
+          <div class="skill">Linux</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About Me</h2>
+          <p>
+            I’m a BSIT student and aspiring professional developer from the Philippines.
+            I focus on building real projects instead of only following tutorials, including
+            web apps, mobile apps, APIs, authentication systems, databases, and deployed projects.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>What I Build</h3>
+            <p>
+              I build practical apps with clean interfaces, backend APIs, authentication,
+              database integration, and mobile-friendly user experiences.
+            </p>
           </div>
 
-          <div class="service-card">
-            <h3>Frontend Development</h3>
-            <p>Responsive pages, React/Next.js components, landing pages, and dashboard interfaces.</p>
-          </div>
-
-          <div class="service-card">
-            <h3>Backend/API Support</h3>
-            <p>Django REST APIs, database integration, authentication flows, and bug fixing.</p>
-          </div>
-
-          <div class="service-card">
-            <h3>Mobile App Support</h3>
-            <p>React Native/Expo screens, API connections, SQLite features, and Android app testing.</p>
+          <div class="card">
+            <h3>How I Work</h3>
+            <p>
+              I’m detail-oriented, willing to learn quickly, comfortable with documentation,
+              and focused on improving projects step by step.
+            </p>
           </div>
         </div>
       </div>
@@ -938,10 +898,10 @@
         <div class="card contact">
           <div>
             <div class="section-head" style="margin-bottom: 0;">
-              <h2>Let’s Work Together</h2>
+              <h2>Let’s Build Something Practical</h2>
               <p>
-                I’m open to part-time, freelance, junior developer, virtual assistant,
-                WordPress support, and web/mobile development opportunities.
+                Open to Junior Developer, Web Developer, Mobile Developer,
+                and Full-Stack opportunities.
               </p>
             </div>
           </div>
